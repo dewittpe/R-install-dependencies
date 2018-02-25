@@ -9,9 +9,9 @@ before_script:
   - cd R-3.4.3
   - ./configure
   - make
-  - cd
+  - cd ..
+  - ./R-3.4.3/bin/R -e "R.version.string"
 
 script: 
-  - ./R-3.4.3/bin/R -e "R.version.string"
   - ./R-3.4.3/bin/Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
   - make
