@@ -3,9 +3,14 @@ dist: trusty
 
 before_script:
   - sudo apt-get install -y --allow-unauthenticated libcairo2-dev libssl-dev libcurl4-openssl-dev libxml2-dev libgmp-dev
-  - sudo apt-get install -y --allow-unauthenticated r-base r-base-dev
+  - sudo apt-get build-dep -y --allow-unauthenticated r-base r-base-dev
+  - wget https://cran.r-project.org/src/base/R-3/R-3.4.3.tar.gz
+  - tar -xvf R-3.4.3
+  - ./configure
+  - make
+  - cd
 
 script: 
-  - R -e "R.version.string"
-  - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
+  - ~/R-3.4.3/bin/R -e "R.version.string"
+  - ~/R-3.4.3/bin/Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
   - make
