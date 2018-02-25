@@ -4,7 +4,9 @@ dist: trusty
 before_script:
   - sudo apt-get update -qq
   - sudo apt-get -y upgrade
-  - sudo apt-get install -y --no-install-recommends r-base r-base-dev
+  - sudo apt-get install -y postgresql postgresql-contrib 
+  - sudo apt-get install -y libcairo2-dev libssl-dev libcurl4-openssl-dev libxml2-dev libgmp-dev
+  - sudo apt-get install -y r-base r-base-dev
 
 script: 
   - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
