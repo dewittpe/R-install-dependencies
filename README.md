@@ -1,5 +1,7 @@
 # R Install Dependencies
 
+[![Build Status](https://travis-ci.org/dewittpe/R-install-dependencies.svg?branch=master)](https://travis-ci.org/dewittpe/R-install-dependencies)
+
 Consider the following situation.  You need to install a set of R packages on a
 machine that cannot make external http(s) requests.   As such, you must download
 source files for the pacakge, along with all of the dependencies, and
