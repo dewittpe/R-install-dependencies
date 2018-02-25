@@ -1,9 +1,9 @@
 language: r
 
 r:
-  -oldrel
-  -release
-  -devel
+  - oldrel
+  - release
+  - devel
 
 addons:
   apt:
