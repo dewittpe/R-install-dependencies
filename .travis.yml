@@ -1,14 +1,14 @@
-language: r
+sudo: required
+dist: trusty
 
-r:
-  - oldrel
-  - release
-  - devel
+before_script:
+  - sudo apt-get update -qq
+  - sudo apt-get -y upgrade
+  - sudo apt-get install -y --no-install-recommends libcairo2-dev libssl-dev libcurl4-openssl-dev libxml2-dev libgmp-dev
+  - sudo apt-get install -y --no-install-recommends r-base r-base-dev
 
-addons:
-  apt:
-    packages: libcairo2-dev libssl-dev libcurl4-openssl-dev libxml2-dev libgmp-dev
-
-script: 
-  - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
-  - make
+r-base:
+  image: r-base:latest
+  script: 
+    - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
+    - make
