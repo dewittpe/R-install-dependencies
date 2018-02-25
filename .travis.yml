@@ -10,8 +10,10 @@ before_script:
   - ./configure
   - make
   - cd ..
-  - ./R-3.4.3/bin/R -e "R.version.string"
+  - alias R="./R-3.4.3/bin/R"
+  - alias Rscript="./R-3.4.3/bin/Rscript"
+  - R -e "R.version.string"
 
 script: 
-  - ./R-3.4.3/bin/Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
+  - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
   - make
