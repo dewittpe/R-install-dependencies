@@ -6,6 +6,7 @@ before_script:
   - sudo apt-get build-dep -y --allow-unauthenticated r-base r-base-dev
   - wget https://cran.r-project.org/src/base/R-3/R-3.4.3.tar.gz
   - tar -xvf R-3.4.3.tar.gz
+  - cd R-3.4.3
   - ./configure
   - make
   - cd
