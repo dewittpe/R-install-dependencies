@@ -6,5 +6,6 @@ before_script:
   - sudo apt-get install -y --allow-unauthenticated r-base r-base-dev
 
 script: 
+  - R -e "R.version.string"
   - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
   - make
