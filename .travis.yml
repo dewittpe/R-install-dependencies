@@ -12,6 +12,6 @@ before_script:
   - cd
 
 script: 
-  - ~/R-3.4.3/bin/R -e "R.version.string"
-  - ~/R-3.4.3/bin/Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
+  - ./R-3.4.3/bin/R -e "R.version.string"
+  - ./R-3.4.3/bin/Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
   - make
