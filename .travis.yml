@@ -11,6 +11,7 @@ before_script:
   - make
   - sudo make install
   - R -e "R.version.string"
+  - cd ..
 
 script: 
   - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
