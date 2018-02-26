@@ -12,6 +12,9 @@ before_script:
   - sudo make install
   - R -e "R.version.string"
   - cd ..
+  - mkdir -p R/mylibrary
+  - echo 'R_LIBS_USER="~/R/mylibrary"' >  $HOME/.Renviron
+
 
 script: 
   - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
