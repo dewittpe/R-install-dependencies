@@ -14,8 +14,9 @@ before_script:
   - cd ..
   - mkdir -p R/mylibrary
   - echo 'R_LIBS_USER="~/R/mylibrary"' >  $HOME/.Renviron
+  - R -e ".libPaths()"
 
 
 script: 
-  - Rscript --vanilla build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
+  - Rscript build-dep-list.R graph gRbase gRain jsonlite plotly SHELF rjson svglite magrittr
   - make
