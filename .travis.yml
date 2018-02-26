@@ -13,7 +13,7 @@ before_script:
   - R -e "R.version.string"
   - cd ..
   - mkdir -p R/mylibrary
-  - echo 'R_LIBS_USER="~/R/mylibrary"' >  .Renviron
+  - echo 'R_LIBS_USER="R/mylibrary"' >  .Renviron
   - R -e ".libPaths()"
 
 
