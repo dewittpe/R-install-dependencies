@@ -39,3 +39,14 @@ the needed packages.
 
     make
 
+## Example
+Say you need to download three packages: 1. ggplot2, 2. qwraps2, 3. data.table.
+
+    Rscript --vanilla build-dep-list.R [pkg1] [pkg2] [...] [pkgn]
+
+or
+
+    echo "ggplot2\nqwraps2\ndata.table" >> needed-pkgs.txt
+    Rscript --vanilla build-dep-list.R needed-pkgs.txt
+
+

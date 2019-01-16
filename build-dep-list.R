@@ -23,6 +23,28 @@
 # known package to download, ..., and pkgn the nth package to download.  The
 # script will download all the dependencies for pkg1, ..., pkgn, and the
 # dependencies of the dependencies, and so on.
+#
+# Alternatively,
+#
+#  Rscript --vanilla build-dep-list.R needed-pkgs.txt
+#
+# where needed-pkgs.txt is a file listing the pkg1, pkg2, ..., pkgn.
+#
+# **EXAMPLE** you need the following three packages:
+#
+# 1. ggplot2
+# 2. qwraps2
+# 3. data.table
+#
+# One way to do this:
+#
+#     Rscript --vanilla build-dep-list.R ggplot2 qwraps2 data.table
+#
+# or
+#
+#    echo "ggplot2\nqwraps2\ndata.table" >> needed-pkgs.txt
+#    Rscript --vanilla build-dep-list.R needed-pkgs.txt
+#
 ################################################################################
 
 # For testing and development, use a subset of packages.  If this script is
