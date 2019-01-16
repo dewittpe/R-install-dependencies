@@ -46,7 +46,7 @@ Say you need to download three packages: 1. ggplot2, 2. qwraps2, 3. data.table.
 
 or
 
-    echo "ggplot2\nqwraps2\ndata.table" >> needed-pkgs.txt
+    echo -e "ggplot2\nqwraps2\ndata.table" > needed-pkgs.txt
     Rscript --vanilla build-dep-list.R needed-pkgs.txt
 
 
