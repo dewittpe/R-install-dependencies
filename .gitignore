@@ -1,2 +1,4 @@
 makefile
 pkg-source-files/
+*.dep
+*.tar
