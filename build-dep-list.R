@@ -32,6 +32,10 @@ if (interactive()) {
                     "rjson", "svglite", "magrittr")
 } else {
   OUR_PACKAGES <- commandArgs(trailingOnly = TRUE)
+  if ( file.exists( OUR_PACKAGES[1] ) ) {
+	 OUR_PACKAGES = scan(OUR_PACKAGES[1], what=character() )
+  	message( OUR_PACKAGES )
+  }
 }
 
 # Repositories to look for packages
