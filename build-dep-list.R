@@ -16,7 +16,7 @@
 # assuming that R and GNU make have been successfully installed on that machine.
 #
 # This script is expected to be evaluated from the command line via:
-#  
+#
 #   Rscript --vanilla build-dep-list.R [pkg1] [pkg2] [...] [pkgn]
 #
 # Where pkg1 is the name of the first known package to download, pkg2 the second
@@ -32,9 +32,9 @@ if (interactive()) {
                     "rjson", "svglite", "magrittr")
 } else {
   OUR_PACKAGES <- commandArgs(trailingOnly = TRUE)
-  if ( file.exists( OUR_PACKAGES[1] ) ) {
-	 OUR_PACKAGES = scan(OUR_PACKAGES[1], what=character() )
-  	message( OUR_PACKAGES )
+  if (file.exists(OUR_PACKAGES[1])) {
+    OUR_PACKAGES <- scan(OUR_PACKAGES[1], what = character())
+    message(OUR_PACKAGES)
   }
 }
 
@@ -66,9 +66,9 @@ while(i <= length(pkgs_to_download)) {
                                        which = c("Depends", "Imports", "LinkingTo"),
                                        db = available_pkgs,
                                        recursive = FALSE),
-           use.names = FALSE) 
+           use.names = FALSE)
   deps <- deps[!(deps %in% base_pkgs)]
-  pkgs_to_download <- append(pkgs_to_download, deps, i) 
+  pkgs_to_download <- append(pkgs_to_download, deps, i)
   i <- i + 1L
 }
 pkgs_to_download <- unique(rev(pkgs_to_download))
@@ -89,10 +89,10 @@ dwnld_pkgs <-
 
 cat("all:\n",
     paste0("\tR CMD INSTALL ", dwnld_pkgs[, 2], "\n"),
-    sep = "", 
+    sep = "",
     file = "makefile")
 
 
 ################################################################################
-#  end of file 
+#  end of file
 ################################################################################
