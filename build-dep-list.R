@@ -42,7 +42,7 @@
 #
 # or
 #
-#    echo "ggplot2\nqwraps2\ndata.table" >> needed-pkgs.txt
+#    echo -e "ggplot2\nqwraps2\ndata.table" > needed-pkgs.txt
 #    Rscript --vanilla build-dep-list.R needed-pkgs.txt
 #
 ################################################################################
