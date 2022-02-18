@@ -42,7 +42,7 @@ the needed packages.
 ## Example
 Say you need to download three packages: 1. ggplot2, 2. qwraps2, 3. data.table.
 
-    Rscript --vanilla build-dep-list.R [pkg1] [pkg2] [...] [pkgn]
+    Rscript --vanilla build-dep-list.R ggplot2 qwraps2 data.table
 
 or
 
