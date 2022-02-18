@@ -50,8 +50,7 @@
 # For testing and development, use a subset of packages.  If this script is
 # called as noted above then the command line args will be used.
 if (interactive()) {
-  OUR_PACKAGES <- c("graph", "gRbase", "gRain", "jsonlite", "plotly", "SHELF",
-                    "rjson", "svglite", "magrittr")
+  OUR_PACKAGES <- c("cpr", "qwraps2", "REDCapExporter", "ensr")
 } else {
   OUR_PACKAGES <- commandArgs(trailingOnly = TRUE)
   if (file.exists(OUR_PACKAGES[1])) {
