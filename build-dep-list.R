@@ -61,6 +61,9 @@ if (interactive()) {
 }
 
 # Repositories to look for packages
+# You can change the mirrors. get a list of mirrors via
+#
+#    utils::getCRANmirrors()
 CRAN <- "https://cran.rstudio.com/"
 BIOC <- "https://bioconductor.org/packages/release/bioc/"
 
