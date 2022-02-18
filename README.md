@@ -1,5 +1,7 @@
 # R Install Dependencies
 
+[![test download and install](https://github.com/dewittpe/R-install-dependencies/actions/workflows/test_download_and_install.yml/badge.svg)](https://github.com/dewittpe/R-install-dependencies/actions/workflows/test_download_and_install.yml)
+
 Consider the following situation.  You need to install a set of R packages on a
 machine that cannot make external http(s) requests.   As such, you must download
 source files for the pacakge, along with all of the dependencies, and
