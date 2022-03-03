@@ -76,11 +76,11 @@ if (interactive()) {
   DOWNLOAD_PAUSE <- cargs[which(grepl("--pause=", cargs))]
   if (length(DOWNLOAD_PAUSE)) {
     DOWNLOAD_PAUSE <- as.numeric(strsplit(DOWNLOAD_PAUSE, "=")[[1]][2])
+    OUR_PACKAGES <- cargs[-which(grepl("--pause=", cargs))]
   } else {
     DOWNLOAD_PAUSE <- 0
+    OUR_PACKAGES <- cargs
   }
-
-  OUR_PACKAGES <- cargs[-which(grepl("--pause=", cargs))]
 
   if (file.exists(OUR_PACKAGES[1])) {
     OUR_PACKAGES <- scan(OUR_PACKAGES[1], what = character())
@@ -145,6 +145,7 @@ tarballs <-
 tarballs <- setNames(tarballs, pkgs_to_download)
 
 dwnld_pkgs <- NULL
+print(tarballs)
 
 for(tb in tarballs) {
   if (file.exists(tb)) {
