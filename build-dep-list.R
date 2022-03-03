@@ -76,6 +76,8 @@ if (interactive()) {
   DOWNLOAD_PAUSE <- cargs[which(grepl("--pause=", cargs))]
   if (length(DOWNLOAD_PAUSE)) {
     DOWNLOAD_PAUSE <- as.numeric(strsplit(DOWNLOAD_PAUSE, "=")[[1]][2])
+  } else {
+    DOWNLOAD_PAUSE <- 0
   }
 
   OUR_PACKAGES <- cargs[-which(grepl("--pause=", cargs))]
