@@ -13,7 +13,7 @@ dependency.
 
 The scrpt `build-dep-list.R` will generate the needed list of dependencies,
 download the source files, from both [CRAN](https://cran.r-project.org) and
-[BioConductor](https://www.bioconductor.org/), and then generate a `makefile`
+[BioConductor](https://www.bioconductor.org/), and then generate a `Makefile`
 to install the packages in an order so that R package dependencies should not
 cause errors.
 
@@ -29,11 +29,17 @@ DESCRIPTION file) along with the dependencies of the dependencies, and so on.
 You may list multiple packages here and the n packages and dependencies will be
 downloaded.
 
-The source files will be placed in a `pkg-source-files` directory.
+Alternatively, you could list the wanted packages in a file, say getthese.txt,
+and call this function thusly:
 
-The R script will generate a `makefile`
+    Rscript --vanilla build-dep-list.R getthese.txt
 
-After transfering the `makefile` and the `pkg-source-files` directory to
+The source files for each package and all dependencies will be placed in a
+`pkg-source-files` directory.
+
+The R script will generate a `Makefile`
+
+After transfering the `Makefile` and the `pkg-source-files` directory to
 the remote machine, the user need only to run [GNU make](https://www.gnu.org/software/make/)
 the needed packages.
 
@@ -49,4 +55,12 @@ or
     echo -e "ggplot2\nqwraps2\ndata.table" > needed-pkgs.txt
     Rscript --vanilla build-dep-list.R needed-pkgs.txt
 
+
+_Pausing between file downloads_
+
+If you want/need to have a notable pause between downloads of each package
+then you can add an optional command line argument `--pause=N` and a minimum
+of N seconds will lapse between downloads.
+
+    Rscript --vanilla build-dep-list.R --pause=3 qwraps2 cpr data.table
 
