@@ -34,6 +34,11 @@ jobs:
           Rscript build-dep-list.R cpr qwraps2
         shell: bash
 
+      - name: build-dep-list-with-pause
+        run: |
+          Rscript build-dep-list.R cpr qwraps2 --pause=0.2 data.table
+        shell: bash
+
       - name: install-pkgs
         run: |
           sudo make
