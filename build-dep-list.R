@@ -98,30 +98,73 @@ while(i <= length(pkgs_to_download)) {
 pkgs_to_download <- unique(rev(pkgs_to_download))
 
 # Download the needed packages into the pkg-source-files directory
-unlink("pkg-source-files/*")
+
+# If you want to download into a clean directory use unlink to delete the files
+# within the pkg-source-files directory.  Otherwise, the version numbers for the
+# available_pkgs will be checked and only missing packages or packages with
+# newer versions will be downloaded.
+# unlink("pkg-source-files/*")
 dir.create("pkg-source-files/", showWarnings = FALSE)
 
+pkg_versions <-
+  sapply(pkgs_to_download, function(p) {
+           available_pkgs[, "Version"][which(p == rownames(available_pkgs))]
+           })
+
+tarballs <-
+  paste0("./pkg-source-files/", pkgs_to_download, "_", pkg_versions, ".tar.gz")
+tarballs <- setNames(tarballs, pkgs_to_download)
+
 dwnld_pkgs <- NULL
-for(pkg in pkgs_to_download) {
-  message("pausing five seconds before next download....")
-  Sys.sleep(5)
-  dwnld_pkgs <-
-    rbind(dwnld_pkgs,
-          download.packages(pkgs = pkg,
-                            destdir = "pkg-source-files",
-                            repos = c(CRAN, BIOC),
-                            type = "source")
-    )
+for(tb in tarballs) {
+  if (file.exists(tb)) {
+    message(paste(tb, "exists and will not be downloaded again"))
+    dwnld_pkgs <-
+      rbind(dwnld_pkgs, c(names(tarballs)[tarballs == tb], tb))
+  } else {
+    message(paste(tb, "will be downloaded"))
+    dwnld_pkgs <-
+      rbind(dwnld_pkgs,
+            download.packages(pkgs = names(tarballs)[tarballs == tb],
+                              destdir = "./pkg-source-files",
+                              repos = c(CRAN, BIOC),
+                              type = "source")
+      )
+  }
 }
 
 # generate a makefile to install the packages.  The makefile will stop if there
 # is an error in any of the installs.  Using a bash script will not stop if
 # there is an error.
 
-cat("all:\n",
-    paste0("\tR CMD INSTALL ", dwnld_pkgs[, 2], "\n"),
-    sep = "",
-    file = "makefile")
+# cat("all:\n",
+#     paste0("\tR CMD INSTALL ", dwnld_pkgs[, 2], "\n"),
+#     sep = "",
+#     file = "makefile")
+
+cat("all:", paste0(".", OUR_PACKAGES, collapse = " "), "\n\n",
+    file = "Makefile",
+    append = FALSE)
+
+for (i in 1:nrow(dwnld_pkgs)) {
+
+  deps <-
+    unlist(tools::package_dependencies(packages = dwnld_pkgs[i, 1],
+                                       which = c("Depends", "Imports", "LinkingTo"),
+                                       db = available_pkgs,
+                                       recursive = FALSE),
+           use.names = FALSE)
+  deps <- deps[!(deps %in% base_pkgs)]
+
+  if (length(deps)) {
+    deps <- paste0(".", deps, collapse = " ")
+  }
+
+  trgt <- paste0(".", dwnld_pkgs[i, 1], ": ", dwnld_pkgs[i, 2], " ", deps)
+  rcp  <- "\n\tR CMD INSTALL $<\n\t@touch $@\n\n"
+  cat(trgt, rcp, file = "Makefile", append = TRUE)
+
+}
 
 
 ################################################################################
