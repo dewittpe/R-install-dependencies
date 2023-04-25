@@ -83,8 +83,8 @@ if (interactive()) {
   }
 
   if (file.exists(OUR_PACKAGES[1])) {
-    OUR_PACKAGES <- scan(OUR_PACKAGES[1], what = character())
-    message(OUR_PACKAGES)
+    OUR_PACKAGES <- scan(OUR_PACKAGES[1], what = character(), sep = '\n')
+    print(OUR_PACKAGES)
   }
 }
 
